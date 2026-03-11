@@ -30,6 +30,7 @@ app.get("/health", (req, res) => {
 
 app.use("/api/user", userDashboardRoutes);
 app.use("/api/company", companyDashboardRoutes);
+app.use("/api/v1/enterprise/company", companyDashboardRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

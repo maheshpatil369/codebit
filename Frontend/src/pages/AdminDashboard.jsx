@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../services/api";
+import { clearAuth, isLoggedIn } from "../services/auth";
 
 // ─── Config ────────────────────────────────────────────────────────────────────
 const BASE_URL = API_BASE_URL;
@@ -113,7 +114,7 @@ export default function AdminDashboard() {
 
   // guard
   useEffect(() => {
-    if (!localStorage.getItem("adminLoggedIn")) navigate("/admin-login");
+    if (!isLoggedIn()) navigate("/admin-login");
   }, [navigate]);
 
   const [health, setHealth]   = useState(null);
@@ -163,7 +164,7 @@ export default function AdminDashboard() {
   const totalDocTypes   = docTypes ? Object.values(docTypes).flat().length : 0;
 
   const handleLogout = () => {
-    localStorage.removeItem("adminLoggedIn");
+    clearAuth();
     navigate("/admin-login");
   };
 

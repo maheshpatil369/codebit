@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { adminLogin } from "../services/api";
+import { saveAuth } from "../services/auth";
 
 export default function AdminLogin() {
   const [username, setUsername] = useState("");
@@ -9,23 +11,21 @@ export default function AdminLogin() {
   const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
     setLoading(true);
 
-    setTimeout(() => {
-      const ADMIN_ID   = "admin";
-      const ADMIN_PASS = "1234";
-
-      if (username === ADMIN_ID && password === ADMIN_PASS) {
-        localStorage.setItem("adminLoggedIn", "true");
-        navigate("/admin-dashboard");
-      } else {
-        setError("Invalid admin credentials. Please try again.");
-        setLoading(false);
-      }
-    }, 800); // brief delay for UX
+    try {
+      const auth = await adminLogin(username, password);
+      saveAuth(auth);
+      localStorage.setItem("adminLoggedIn", "true");
+      navigate("/admin-dashboard");
+    } catch (err) {
+      setError(err.message || "Invalid admin credentials. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

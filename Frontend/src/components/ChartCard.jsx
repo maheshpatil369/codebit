@@ -79,6 +79,10 @@ function DonutChart({ data }) {
   }
 
   const total = data.reduce((sum, item) => sum + item.value, 0);
+  if (total <= 0) {
+    return <p className="text-sm text-gray-500">No analytics available.</p>;
+  }
+
   let startAngle = 0;
   const colors = ["#d4a847", "#93c5fd", "#6ee7b7", "#fda4af"];
 

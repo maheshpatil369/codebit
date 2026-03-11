@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
+import { clearAuth } from "../services/auth";
 
 export default function Navbar({ username }) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    clearAuth();
     navigate('/');
   };
 

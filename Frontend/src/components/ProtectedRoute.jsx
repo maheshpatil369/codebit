@@ -1,10 +1,8 @@
 import { Navigate } from "react-router-dom";
+import { isLoggedIn } from "../services/auth";
 
 export default function ProtectedRoute({ children }) {
-
-  const isLoggedIn = localStorage.getItem("adminLoggedIn");
-
-  if (!isLoggedIn) {
+  if (!isLoggedIn()) {
     return <Navigate to="/admin-login" />;
   }
 
