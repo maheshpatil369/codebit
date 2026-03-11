@@ -1,8 +1,9 @@
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../services/api";
 
 // ─── Config ────────────────────────────────────────────────────────────────────
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = API_BASE_URL;
 
 // ─── API helpers (read-only – GET + health only) ───────────────────────────────
 async function fetchHealth() {
@@ -118,6 +119,7 @@ export default function AdminDashboard() {
   const [health, setHealth]   = useState(null);
   const [docTypes, setDocTypes] = useState(null);
   const [appInfo, setAppInfo]  = useState(null);
+  const [docTypesError, setDocTypesError] = useState("");
   const [loading, setLoading]  = useState(true);
   const [error, setError]      = useState("");
   const [lastRefresh, setLastRefresh] = useState(null);
@@ -125,11 +127,27 @@ export default function AdminDashboard() {
   const load = useCallback(async () => {
     setLoading(true);
     setError("");
+    setDocTypesError("");
     try {
-      const [h, dt, ai] = await Promise.all([fetchHealth(), fetchDocumentTypes(), fetchRoot()]);
-      setHealth(h);
-      setDocTypes(dt);
-      setAppInfo(ai);
+      const [healthResult, docTypesResult, appInfoResult] = await Promise.allSettled([
+        fetchHealth(),
+        fetchDocumentTypes(),
+        fetchRoot(),
+      ]);
+
+      if (healthResult.status !== "fulfilled") throw healthResult.reason;
+      if (appInfoResult.status !== "fulfilled") throw appInfoResult.reason;
+
+      setHealth(healthResult.value);
+      setAppInfo(appInfoResult.value);
+
+      if (docTypesResult.status === "fulfilled") {
+        setDocTypes(docTypesResult.value);
+      } else {
+        setDocTypes(null);
+        setDocTypesError(docTypesResult.reason?.message || "Document types are unavailable on this backend.");
+      }
+
       setLastRefresh(new Date());
     } catch (err) {
       setError(err.message);
@@ -673,7 +691,7 @@ export default function AdminDashboard() {
                     </div>
                   ))}
                 </div>
-              ) : docTypes ? (
+              ) : docTypes && totalCategories > 0 ? (
                 <div className="cat-grid">
                   {Object.entries(docTypes).map(([cat, types]) => (
                     <div className="cat-card" key={cat}>
@@ -689,7 +707,7 @@ export default function AdminDashboard() {
                 </div>
               ) : (
                 <div style={{ padding: 24, color: "var(--text-muted)", fontSize: 13 }}>
-                  No categories loaded
+                  {docTypesError || "No categories loaded"}
                 </div>
               )}
             </div>

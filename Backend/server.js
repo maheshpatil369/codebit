@@ -1,36 +1,35 @@
-const express = require("express");
-const cors = require("cors");
+import express from "express";
+import cors from "cors";
+
+import userDashboardRoutes from "./routes/userDashboard.js";
+import companyDashboardRoutes from "./routes/companyDashboard.js";
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
 
-// Test route
 app.get("/", (req, res) => {
   res.json({
-    message: "Backend server is running successfully 🚀"
+    name: "LexNova Dashboard API",
+    version: "2.0.0",
+    status: "running",
+    message: "Backend server is running successfully",
   });
 });
 
-// Test API route
-app.get("/api/test", (req, res) => {
+app.get("/health", (req, res) => {
   res.json({
-    status: "success",
-    data: "API is working properly"
+    status: "healthy",
+    service: "dashboard-api",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
   });
 });
 
-// POST test
-app.post("/api/data", (req, res) => {
-  const data = req.body;
-
-  res.json({
-    message: "Data received",
-    yourData: data
-  });
-});
+app.use("/api/user", userDashboardRoutes);
+app.use("/api/company", companyDashboardRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
