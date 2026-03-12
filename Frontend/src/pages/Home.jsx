@@ -310,8 +310,27 @@ export default function LexLanding() {
           ))}
         </div>
         <div style={{ display: "flex", gap: 12 }}>
-          <button className="outline-btn" style={{ padding: "10px 24px", fontSize: 13 }}>Log in</button>
-          <button onClick={() => window.open("https://drive.google.com/file/d/1Hy3ZHAxPqqj7cwq1kfEC-fQ2wU6OgMx6/view?usp=sharing", "_blank")} className="cta-btn" style={{ padding: "10px 24px", fontSize: 13 }}>Download App</button>
+     <a
+  href="https://yourdomain.com/login"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="outline-btn"
+  style={{ padding: "10px 24px", fontSize: 13, display: "inline-block", textDecoration: "none" }}
+>
+  Log in
+</a>
+    <a
+  href="https://drive.google.com/file/d/1Hy3ZHAxPqqj7cwq1kfEC-fQ2wU6OgMx6/view?usp=sharing"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <button
+    className="cta-btn"
+    style={{ padding: "10px 24px", fontSize: 13 }}
+  >
+    Download App
+  </button>
+</a>
         </div>
       </nav>
 
@@ -657,9 +676,15 @@ export default function LexLanding() {
               padding: "14px 0",
             }}
           />
-          <button className="cta-btn" style={{ borderRadius: 14, padding: "14px 28px" }}>
-            Ask Lex ▶
-          </button>
+     <a
+  href="https://drive.google.com/file/d/1Hy3ZHAxPqqj7cwq1kfEC-fQ2wU6OgMx6/view?usp=sharing"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="cta-btn"
+  style={{ padding: "10px 24px", fontSize: 13, display: "inline-block", textDecoration: "none" }}
+>
+ Ask Lex
+</a>
         </div>
         <div style={{ marginTop: 20, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
           {["What is a non-compete clause?", "Can my landlord raise rent?", "What is GST input tax credit?"].map(q => (
@@ -772,13 +797,18 @@ export default function LexLanding() {
             Join thousands who trust Lex for legal clarity. Download the app and ask your first question — for free.
           </p>
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-<button
-  className="cta-btn"
-  style={{ fontSize: 16, padding: "18px 48px" }}
-  onClick={() => window.open("https://drive.google.com/file/d/1Hy3ZHAxPqqj7cwq1kfEC-fQ2wU6OgMx6/view?usp=sharing", "_blank")}
+<a
+  href="https://apps.apple.com/app/idXXXXXXXX"
+  target="_blank"
+  rel="noopener noreferrer"
 >
-  Download on App Store
-</button>            <button onClick={() => window.open("https://drive.google.com/file/d/1Hy3ZHAxPqqj7cwq1kfEC-fQ2wU6OgMx6/view?usp=sharing", "_blank")} className="cta-btn" style={{ fontSize: 16, padding: "18px 48px", background: "#2a2218" }}>Get it on Google Play</button>
+  <button
+    className="cta-btn"
+    style={{ fontSize: 16, padding: "18px 48px" }}
+  >
+    Download on App Store
+  </button>
+</a>
           </div>
         </div>
       </section>
