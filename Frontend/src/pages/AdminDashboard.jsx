@@ -7,22 +7,36 @@ import { clearAuth, isLoggedIn } from "../services/auth";
 const BASE_URL = API_BASE_URL;
 
 // ─── API helpers (read-only – GET + health only) ───────────────────────────────
+const NGROK_HEADERS = {
+  "ngrok-skip-browser-warning": "true"
+};
+
 async function fetchHealth() {
-  const r = await fetch(`${BASE_URL}/health`);
+  const r = await fetch(`${BASE_URL}/health`, {
+    headers: NGROK_HEADERS
+  });
+
   if (!r.ok) throw new Error(`Health check failed (${r.status})`);
   return r.json();
 }
+
 async function fetchDocumentTypes() {
-  const r = await fetch(`${BASE_URL}/api/v1/document-types`);
+  const r = await fetch(`${BASE_URL}/api/v1/document-types`, {
+    headers: NGROK_HEADERS
+  });
+
   if (!r.ok) throw new Error(`Document types failed (${r.status})`);
   return r.json();
 }
+
 async function fetchRoot() {
-  const r = await fetch(`${BASE_URL}/`);
+  const r = await fetch(`${BASE_URL}/`, {
+    headers: NGROK_HEADERS
+  });
+
   if (!r.ok) throw new Error(`Root failed (${r.status})`);
   return r.json();
 }
-
 // ─── Tiny sub-components ───────────────────────────────────────────────────────
 
 function StatusDot({ ok }) {
