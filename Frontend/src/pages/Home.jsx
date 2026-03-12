@@ -309,29 +309,27 @@ export default function LexLanding() {
             <a key={l} href={`#${l.toLowerCase().replace(/ /g, "-")}`} className="nav-link">{l}</a>
           ))}
         </div>
-        <div style={{ display: "flex", gap: 12 }}>
-     <a
-  href="https://yourdomain.com/login"
-  target="_blank"
-  rel="noopener noreferrer"
+    <div style={{ display: "flex", gap: 12 }}>
+
+<a
+  href="/login"
   className="outline-btn"
   style={{ padding: "10px 24px", fontSize: 13, display: "inline-block", textDecoration: "none" }}
 >
   Log in
 </a>
-    <a
-  href="https://drive.google.com/file/d/1Hy3ZHAxPqqj7cwq1kfEC-fQ2wU6OgMx6/view?usp=sharing"
+
+<a
+  href="https://drive.google.com/uc?export=download&id=1Hy3ZHAxPqqj7cwq1kfEC-fQ2wU6OgMx6"
   target="_blank"
   rel="noopener noreferrer"
+  className="cta-btn"
+  style={{ padding: "10px 24px", fontSize: 13, display: "inline-block", textDecoration: "none" }}
 >
-  <button
-    className="cta-btn"
-    style={{ padding: "10px 24px", fontSize: 13 }}
-  >
-    Download App
-  </button>
+  Download App
 </a>
-        </div>
+
+</div>
       </nav>
 
       {/* HERO */}
