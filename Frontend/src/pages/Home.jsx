@@ -311,7 +311,7 @@ export default function LexLanding() {
         </div>
         <div style={{ display: "flex", gap: 12 }}>
           <button className="outline-btn" style={{ padding: "10px 24px", fontSize: 13 }}>Log in</button>
-          <button className="cta-btn" style={{ padding: "10px 24px", fontSize: 13 }}>Download App</button>
+          <button onClick={() => window.open("https://drive.google.com/file/d/1Hy3ZHAxPqqj7cwq1kfEC-fQ2wU6OgMx6/view?usp=sharing", "_blank")} className="cta-btn" style={{ padding: "10px 24px", fontSize: 13 }}>Download App</button>
         </div>
       </nav>
 
@@ -772,8 +772,13 @@ export default function LexLanding() {
             Join thousands who trust Lex for legal clarity. Download the app and ask your first question — for free.
           </p>
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <button className="cta-btn" style={{ fontSize: 16, padding: "18px 48px" }}>Download on App Store</button>
-            <button className="cta-btn" style={{ fontSize: 16, padding: "18px 48px", background: "#2a2218" }}>Get it on Google Play</button>
+<button
+  className="cta-btn"
+  style={{ fontSize: 16, padding: "18px 48px" }}
+  onClick={() => window.open("https://drive.google.com/file/d/1Hy3ZHAxPqqj7cwq1kfEC-fQ2wU6OgMx6/view?usp=sharing", "_blank")}
+>
+  Download on App Store
+</button>            <button onClick={() => window.open("https://drive.google.com/file/d/1Hy3ZHAxPqqj7cwq1kfEC-fQ2wU6OgMx6/view?usp=sharing", "_blank")} className="cta-btn" style={{ fontSize: 16, padding: "18px 48px", background: "#2a2218" }}>Get it on Google Play</button>
           </div>
         </div>
       </section>
