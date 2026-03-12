@@ -1,5 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 
+const downloadApp = () => {
+  window.open(
+    "https://drive.google.com/file/d/1Hy3ZHAxPqqj7cwq1kfEC-fQ2wU6OgMx6/view?usp=sharing",
+    "_blank"
+  );
+};
+
 const features = [
   {
     icon: "⚖️",
@@ -318,16 +325,13 @@ export default function LexLanding() {
 >
   Log in
 </a>
-
-<a
-  href="https://drive.google.com/uc?export=download&id=1Hy3ZHAxPqqj7cwq1kfEC-fQ2wU6OgMx6"
-  target="_blank"
-  rel="noopener noreferrer"
+<button
   className="cta-btn"
-  style={{ padding: "10px 24px", fontSize: 13, display: "inline-block", textDecoration: "none" }}
+  style={{ padding: "10px 24px", fontSize: 13 }}
+  onClick={downloadApp}
 >
   Download App
-</a>
+</button>
 
 </div>
       </nav>
@@ -385,8 +389,12 @@ export default function LexLanding() {
           </p>
 
           <div className="fade-up-d3" style={{ display: "flex", gap: 14, marginBottom: 56, flexWrap: "wrap" }}>
-            <button className="cta-btn">Get Started Free</button>
-            <button className="outline-btn">Watch Demo</button>
+           <button className="cta-btn" onClick={downloadApp}>
+  Get Started Free
+</button>
+          <button className="outline-btn" onClick={downloadApp}>
+  Watch Demo
+</button>
           </div>
 
           <div className="fade-up-d4" style={{
@@ -674,15 +682,13 @@ export default function LexLanding() {
               padding: "14px 0",
             }}
           />
-     <a
-  href="https://drive.google.com/file/d/1Hy3ZHAxPqqj7cwq1kfEC-fQ2wU6OgMx6/view?usp=sharing"
-  target="_blank"
-  rel="noopener noreferrer"
+<button
   className="cta-btn"
-  style={{ padding: "10px 24px", fontSize: 13, display: "inline-block", textDecoration: "none" }}
+  style={{ padding: "10px 24px", fontSize: 13 }}
+  onClick={downloadApp}
 >
- Ask Lex
-</a>
+  Ask Lex
+</button>
         </div>
         <div style={{ marginTop: 20, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
           {["What is a non-compete clause?", "Can my landlord raise rent?", "What is GST input tax credit?"].map(q => (
@@ -795,18 +801,13 @@ export default function LexLanding() {
             Join thousands who trust Lex for legal clarity. Download the app and ask your first question — for free.
           </p>
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-<a
-  href="https://apps.apple.com/app/idXXXXXXXX"
-  target="_blank"
-  rel="noopener noreferrer"
+<button
+  className="cta-btn"
+  style={{ fontSize: 16, padding: "18px 48px" }}
+  onClick={downloadApp}
 >
-  <button
-    className="cta-btn"
-    style={{ fontSize: 16, padding: "18px 48px" }}
-  >
-    Download on App Store
-  </button>
-</a>
+  Download on App Store
+</button>
           </div>
         </div>
       </section>
